@@ -1,61 +1,7 @@
-mod inter {
-    pub fn powm(n: usize, m: usize, c: usize) -> usize {
-        let k: usize = 1;
-        let mut x = c;
-        let mut b: usize = n;
-        let mut a: usize = 1;
-        let mut i = 0;
-        while x != 0 {
-            if k << i & x != 0 {
-                a = (a * b) % m;
-                b = (b * b) % m;
-                x ^= k << i;
-            } else {
-                b = (b * b) % m;
-            }
-            i += 1;
-        }
-        a
-    }
-    pub fn power(n: usize, r: usize) -> usize {
-        let k: usize = 1;
-        let mut x: usize = r;
-        let mut a: usize = 1;
-        let mut b: usize = n;
-        let mut i: usize = 0;
-        while x != 0 {
-            if k << i & x != 0 {
-                a *= b;
-                b *= b;
-                x -= k << i;
-            } else {
-                b *= b;
-            }
-            i += 1;
-        }
-        a
-    }
-    pub fn rt(n: usize) -> usize {
-        let mut l: usize = 1;
-        let mut r: usize = n;
-        let mut m: usize = 0;
-        while r - l > 1 {
-            m = (r + l) / 2;
-            if m * m == n {
-                return m;
-            }
-            if m * m > n {
-                r = m;
-            } else {
-                l = m;
-            }
-        }
-        return l;
-    }
-}
+pub mod inter;
 #[cfg(test)]
 mod tests {
-    use super::inter::*;
+    use crate::inter::{power::power, powm::powm, rt::rt};
     #[test]
     fn powtest() {
         let result = power(4, 6);
