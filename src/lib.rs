@@ -1,7 +1,9 @@
 pub mod inter;
+pub mod string;
 #[cfg(test)]
 mod tests {
-    use crate::inter::{power::power, powm::powm, rt::rt};
+    use crate::inter::{power, powm, rt};
+    use crate::string::{rotate, rotate_diff};
     #[test]
     fn powtest() {
         let result = power(4, 6);
@@ -24,5 +26,13 @@ mod tests {
         assert_eq!(result, 31);
         let result = rt(9999);
         assert_eq!(result, 99);
+    }
+    #[test]
+    fn rotation() {
+        assert!(rotate("aaaaa".to_string()));
+        assert!(!rotate("abcdeecba".to_string()));
+        assert!(rotate("abcdedcba".to_string()));
+        assert_eq!(0, rotate_diff("abcdedcba".to_string()));
+        assert_eq!(4, rotate_diff("dcbaedcba".to_string()));
     }
 }
