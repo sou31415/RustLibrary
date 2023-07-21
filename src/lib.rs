@@ -11,10 +11,12 @@ mod tests {
     }
     #[test]
     fn powmod() {
-        let result = powm(123456789, 234567894, 6574837563712);
+        let result = powm(123456789, 6574837563712, 234567894);
         assert_eq!(result, 120678297);
-        let result = powm(12, 15, 7);
+        let result = powm(12, 7, 15);
         assert_eq!(result, 3);
+        let result = powm(73251, 73251, 998244353);
+        assert_eq!(result, 21540034);
     }
     #[test]
     fn rttest() {
