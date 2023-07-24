@@ -1,4 +1,4 @@
-pub fn matrix_pow(mut r: Vec<Vec<usize>>, a: usize, m: usize, mut x: usize) -> Vec<Vec<usize>> {
+pub fn matrix_pow(mut r: Vec<Vec<usize>>, m: usize, mut x: usize) -> Vec<Vec<usize>> {
     let mut v: Vec<Vec<usize>> = vec![vec![0; r.len()]; r.len()];
     for i in 0..r.len() {
         v[i][i] = 1;
@@ -6,10 +6,10 @@ pub fn matrix_pow(mut r: Vec<Vec<usize>>, a: usize, m: usize, mut x: usize) -> V
     let mut i: usize = 0;
     while x != 0 {
         if 1usize << i & x != 0 {
-            let mut d: Vec<Vec<usize>> = vec![vec![0, 0], vec![0, 0]];
-            for i in 0..2 {
-                for j in 0..2 {
-                    for k in 0..2 {
+            let mut d: Vec<Vec<usize>> = vec![vec![0; r.len()]; r.len()];
+            for i in 0..r.len() {
+                for j in 0..r.len() {
+                    for k in 0..r.len() {
                         d[i][j] += v[i][k] * r[k][j];
                         d[i][j] %= m;
                     }
@@ -18,10 +18,10 @@ pub fn matrix_pow(mut r: Vec<Vec<usize>>, a: usize, m: usize, mut x: usize) -> V
             x -= 1usize << i;
             v = d;
         }
-        let mut d: Vec<Vec<usize>> = vec![vec![0, 0], vec![0, 0]];
-        for i in 0..2 {
-            for k in 0..2 {
-                for j in 0..2 {
+        let mut d: Vec<Vec<usize>> = vec![vec![0; r.len()]; r.len()];
+        for i in 0..r.len() {
+            for k in 0..r.len() {
+                for j in 0..r.len() {
                     d[i][j] += r[i][k] * r[k][j];
                     d[i][j] %= m;
                 }
