@@ -1,9 +1,14 @@
 pub mod inter;
+pub mod matrix;
+pub mod modint;
 pub mod string;
+#[allow(unused_imports)]
 #[cfg(test)]
 mod tests {
     use crate::inter::{power, powm, rt};
+    use crate::modint::Modint;
     use crate::string::{rotate, rotate_diff};
+    use crate::matrix::matrix_pow;
     #[test]
     fn powtest() {
         let result = power(4, 6);
@@ -12,11 +17,11 @@ mod tests {
     #[test]
     fn powmod() {
         let result = powm(123456789, 6574837563712, 234567894);
-        assert_eq!(result, 120678297);
+        assert_eq!(result.fact, 120678297);
         let result = powm(12, 7, 15);
-        assert_eq!(result, 3);
+        assert_eq!(result.fact, 3);
         let result = powm(73251, 73251, 998244353);
-        assert_eq!(result, 21540034);
+        assert_eq!(result.fact, 21540034);
     }
     #[test]
     fn rttest() {
@@ -36,5 +41,8 @@ mod tests {
         assert!(rotate("abcdedcba".to_string()));
         assert_eq!(0, rotate_diff("abcdedcba".to_string()));
         assert_eq!(4, rotate_diff("dcbaedcba".to_string()));
+    }
+    fn power_matrix() {
+        assert_eq!(matrix_pow
     }
 }

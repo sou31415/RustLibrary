@@ -1,29 +1,34 @@
-pub fn matrix_pow(mut r: Vec<Vec<usize>>, m: usize, mut x: usize) -> Vec<Vec<usize>> {
-    let mut v: Vec<Vec<usize>> = vec![vec![0; r.len()]; r.len()];
+use crate::modint::Modint;
+pub fn matrix_pow(mut s: Vec<Vec<usize>>, m: usize, mut x: usize) -> Vec<Vec<Modint>> {
+    let mut r: Vec<Vec<Modint>> = vec![vec![Modint::new(m, 0); s.len()]; s.len()];
+    for i in 0..s.len() {
+        for j in 0..s.len() {
+            r[i][j] = Modint::new(m, s[i][j]);
+        }
+    }
+    let mut v: Vec<Vec<Modint>> = vec![vec![Modint::new(m, 0usize); r.len()]; r.len()];
     for i in 0..r.len() {
-        v[i][i] = 1;
+        v[i][i] = Modint::new(m, 1usize);
     }
     let mut i: usize = 0;
     while x != 0 {
         if 1usize << i & x != 0 {
-            let mut d: Vec<Vec<usize>> = vec![vec![0; r.len()]; r.len()];
+            let mut d: Vec<Vec<Modint>> = vec![vec![Modint::new(m, 0usize); r.len()]; r.len()];
             for i in 0..r.len() {
                 for j in 0..r.len() {
                     for k in 0..r.len() {
                         d[i][j] += v[i][k] * r[k][j];
-                        d[i][j] %= m;
                     }
                 }
             }
-            x -= 1usize << i;
+            x ^= 1usize << i;
             v = d;
         }
-        let mut d: Vec<Vec<usize>> = vec![vec![0; r.len()]; r.len()];
+        let mut d: Vec<Vec<Modint>> = vec![vec![Modint::new(m, 0usize); r.len()]; r.len()];
         for i in 0..r.len() {
             for k in 0..r.len() {
                 for j in 0..r.len() {
                     d[i][j] += r[i][k] * r[k][j];
-                    d[i][j] %= m;
                 }
             }
         }

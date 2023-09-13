@@ -1,3 +1,4 @@
+use crate::modint::Modint;
 pub fn power(n: usize, mut x: usize) -> usize {
     let mut a: usize = 1;
     let mut b: usize = n;
@@ -14,17 +15,17 @@ pub fn power(n: usize, mut x: usize) -> usize {
     }
     a
 }
-pub fn powm(n: usize, mut x: usize, m: usize) -> usize {
-    let mut b: usize = n;
-    let mut a: usize = 1;
-    let mut i = 0;
+pub fn powm(n: usize, mut x: usize, m: usize) -> Modint {
+    let mut b = Modint::new(m, n);
+    let mut a = Modint::new(m, 1);
+    let mut i: usize = 0;
     while x != 0 {
         if 1usize << i & x != 0 {
-            a = (a * b) % m;
-            b = (b * b) % m;
+            a *= b;
+            b *= b;
             x ^= 1usize << i;
         } else {
-            b = (b * b) % m;
+            b *= b;
         }
         i += 1;
     }
