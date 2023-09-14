@@ -1,5 +1,9 @@
+//! 行列関連のライブラリです
+
 use crate::modint::Modint;
-pub fn matrix_pow(mut s: Vec<Vec<usize>>, m: usize, mut x: usize) -> Vec<Vec<Modint>> {
+/// 行列累乗です  
+/// 行列`S`の`x`乗を`O(logx)`で計算します  
+pub fn matrix_pow(s: Vec<Vec<usize>>, m: usize, mut x: usize) -> Vec<Vec<Modint>> {
     let mut r: Vec<Vec<Modint>> = vec![vec![Modint::new(m, 0); s.len()]; s.len()];
     for i in 0..s.len() {
         for j in 0..s.len() {
@@ -35,5 +39,5 @@ pub fn matrix_pow(mut s: Vec<Vec<usize>>, m: usize, mut x: usize) -> Vec<Vec<Mod
         r = d;
         i += 1;
     }
-    return v;
+    v
 }

@@ -1,4 +1,6 @@
+//! 整数関連のライブラリ  
 use crate::modint::Modint;
+/// 繰り返し二乗法を用いて`n`の`x`乗を`O(logx)`で計算します  
 pub fn power(n: usize, mut x: usize) -> usize {
     let mut a: usize = 1;
     let mut b: usize = n;
@@ -15,6 +17,7 @@ pub fn power(n: usize, mut x: usize) -> usize {
     }
     a
 }
+/// 繰り返し二乗法を用いて`n^x mod m`を`O(logx)`で計算します  
 pub fn powm(n: usize, mut x: usize, m: usize) -> Modint {
     let mut b = Modint::new(m, n);
     let mut a = Modint::new(m, 1);
@@ -31,6 +34,8 @@ pub fn powm(n: usize, mut x: usize, m: usize) -> Modint {
     }
     a
 }
+
+/// 二分探索を用いて`floor(sqrt(n))` を`O(logn)`で計算します
 pub fn rt(n: usize) -> usize {
     let mut l: u128 = 1;
     let mut r: u128 = n as u128;
@@ -45,5 +50,5 @@ pub fn rt(n: usize) -> usize {
             l = m;
         }
     }
-    return l as usize;
+    l as usize
 }
