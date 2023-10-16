@@ -59,5 +59,6 @@ mod tests {
         let k = ExtendedInt::new(4usize);
         let r = ExtendedInt::new(3usize);
         assert_eq!((r ^ k).unwrap(), 81usize);
+        assert_eq!(2, 2);
     }
 }
