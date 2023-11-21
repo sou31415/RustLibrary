@@ -10,7 +10,7 @@ mod tests {
     use crate::inter::{power, powm, rt};
     use crate::matrix::matrix_pow;
     use crate::modint::Modint;
-    use crate::string::{rotate, rotate_diff};
+    use crate::string::{rle, rotate, rotate_diff};
     #[test]
     fn powtest() {
         let result = power(4, 6);
@@ -43,6 +43,11 @@ mod tests {
         assert!(rotate("abcdedcba".to_string()));
         assert_eq!(0, rotate_diff("abcdedcba".to_string()));
         assert_eq!(4, rotate_diff("dcbaedcba".to_string()));
+    }
+    #[test]
+    fn rle_test() {
+        assert_eq!(rle("ABC".to_string()), vec![('A', 1), ('B', 1), ('C', 1)]);
+        assert_eq!(rle("AABCC".to_string()), vec![('A', 2), ('B', 1), ('C', 2)]);
     }
     #[test]
     fn power_matrix() {

@@ -23,3 +23,21 @@ pub fn rotate_diff(q: String) -> usize {
     }
     result
 }
+
+pub fn rle(s: String) -> Vec<(char, usize)> {
+    let q = s.chars().collect::<Vec<char>>();
+    let mut v: Vec<(char, usize)> = vec![];
+    let mut now: char = q[0];
+    let mut streek: usize = 1;
+    for i in 1usize..q.len() {
+        if now != q[i] {
+            v.push((now, streek));
+            now = q[i];
+            streek = 1;
+        } else {
+            streek += 1;
+        }
+    }
+    v.push((now, streek));
+    v
+}
