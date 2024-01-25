@@ -1,12 +1,15 @@
 pub mod extended_int;
+pub mod implvec;
 pub mod inter;
 pub mod matrix;
 pub mod modint;
 pub mod string;
+use itertools::Itertools;
 #[allow(unused_imports)]
 #[cfg(test)]
 mod tests {
     use crate::extended_int::ExtendedInt;
+    use crate::implvec::Implvec;
     use crate::inter::{power, powm, rt};
     use crate::matrix::matrix_pow;
     use crate::modint::Modint;
@@ -63,7 +66,15 @@ mod tests {
     fn extended_pow() {
         let k = ExtendedInt::new(4usize);
         let r = ExtendedInt::new(3usize);
+        let v = Implvec(vec![1usize, 2, 3]);
+        println!("{}", v);
+        assert_eq!(format!("{}", v), "1 2 3".to_string());
         assert_eq!((r ^ k).unwrap(), 81usize);
         assert_eq!(2, 2);
+    }
+    #[test]
+    fn test_implvec() {
+        let v = Implvec(vec![1usize, 2, 3]);
+        assert_eq!(format!("{}", v), "1 2 3".to_string());
     }
 }
