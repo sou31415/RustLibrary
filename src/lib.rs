@@ -4,7 +4,6 @@ pub mod inter;
 pub mod matrix;
 pub mod modint;
 pub mod string;
-use itertools::Itertools;
 #[allow(unused_imports)]
 #[cfg(test)]
 mod tests {
@@ -14,6 +13,7 @@ mod tests {
     use crate::matrix::matrix_pow;
     use crate::modint::Modint;
     use crate::string::{rle, rotate, rotate_diff};
+    use itertools::Itertools;
     #[test]
     fn powtest() {
         let result = power(4, 6);
